@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WHOIS Lookup Panel</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #f44336;
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .panel {
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      width: 500px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      background-color: #333;
+      color: #f44336;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #f44336;
+      color: #0d0d0d;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      background-color: #121212;
+      padding: 15px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>WHOIS & Reverse IP Lookup</h2>
+    <input type="text" id="ipInput" placeholder="Enter IP address">
+    <button onclick="lookupIP()">Query</button>
+    <div class="result" id="resultBox"></div>
+  </div>
+  <script>
+    function lookupIP() {
+      const ip = document.getElementById("ipInput").value.trim();
+      const resultBox = document.getElementById("resultBox");
+      if (ip === "85.236.112.55") {
+        resultBox.textContent = `
+IP Address: 85.236.112.55
+Registry: RIPE NCC
+Country: SI
+City: Ljubljana
+Organization: Leaf Hosting
+ASN: AS42177
+Contact: abuse@leafhost.si
+Registered On: 2023-08-14
+Last Updated: 2024-09-22
+Reverse DNS: millers.storage
+Nameservers: ns1.leafhost.si, ns2.leafhost.si
+Status: ACTIVE
+Traffic Type: Mixed
+Fraud Risk: Medium
+Notes: Outbound activity logged Oct 26 01:10–01:45 UTC
+        `;
+      } else {
+        resultBox.textContent = `
+IP Address: ${ip}
+Query Time: ${new Date().toUTCString()}
+Result: No records found or private/internal IP.
+Possible reasons:
+- IP is reserved or internal
+- No public WHOIS data available
+- Reverse DNS lookup failed
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
